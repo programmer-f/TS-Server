@@ -1,0 +1,96 @@
+<!--
+1.安装相关依赖
+npm install sequelize-typescript
+npm install egg-sequelize-ts
+2.修改相关配置
+https://github.com/stone-lyl/egg-sequelize-ts
+3.编写Model文件
+4.使用Model文件
+-->
+<!--
+1.@Table
+https://github.com/RobinBuschmann/sequelize-typescript#table-api
+@Table({
+  timestamps: true,
+  ...
+})
+https://github.com/demopark/sequelize-docs-Zh-CN/blob/v5/models-definition.md 配置
+let User = sequelize.define('user', {
+}, {
+    // 原生sequelize定义表方法的这里就是sequelize-typescript中的@Table
+});
+-->
+<!--
+2.@Column
+https://github.com/RobinBuschmann/sequelize-typescript#column-api
+@Column({
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+    unique: true,
+    comment: '这是表的主键',
+    ...
+})
+id: number;
+
+https://github.com/demopark/sequelize-docs-Zh-CN/blob/v5/models-definition.md 模型定义
+let User = sequelize.define('user', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    }
+}, {});
+-->
+<!--
+3.列类型快捷装饰器
+@AllowNull(allowNull?: boolean)	设置attribute.allowNull（默认为true）
+@AutoIncrement	设置attribute.autoIncrement=true
+@Unique	设置attribute.unique=true
+@Default(value: any)	设置attribute.defaultValue为指定值
+@PrimaryKey	套 attribute.primaryKey=true
+@Comment(value: string)	设置attribute.comment为指定的字符串
+
+
+@Column({
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+    unique: true,
+    comment: '这是表的主键',
+    ...
+})
+id: number;
+
+@PrimaryKey
+@AutoIncrement
+@AllowNull(false)
+@Unique
+@Comment( '这是表的主键')
+@Column({type: DataType.INTEGER});
+id: number;
+
+注意点: 结合使用时把@Column放到最下面
+-->
+<!--
+4.自动类型推断
+可以从javascript类型自动推断出以下类型。其他必须明确定义。
+js类型	    推断类型
+string	    STRING
+boolean	    BOOLEAN
+number	    INTEGER
+Date	    DATE
+Buffer	    BLOB
+-->
+<!--
+5.其它
+- 大部分用户和sequelize都一样, 企业开发中只需对照文档阅读使用即可
+- 除此之外因为sequelize不是使用ts编写的, 所以在整合的时候需要做大量的配置和修改
+  对于小白而言可能有些难度, 如果你想再简单一点, 那么你还可以在TS中使用typeorm来操作数据
+- typeorm和sequelize都是数据库ORM框架, 但是typeorm是使用TS编写的, 所以在集成的时候相对简单
+  但是由于typeorm比较新, 所以还有很多不足,以及遇到问题的时候相关资料也并不是很多
+  所以有空的时候建议可以尝试, 但如果个人能力还不够, 那么当前还不建议集成到企业级项目中
+https://www.npmjs.com/package/typeorm
+-->
