@@ -15,6 +15,9 @@ import 'egg-static';
 import 'egg-jsonp';
 import 'egg-view';
 import 'egg-sequelize-ts';
+import 'egg-validate';
+import 'egg-session-redis';
+import 'egg-redis';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -31,5 +34,8 @@ declare module 'egg' {
     jsonp?: EggPluginItem;
     view?: EggPluginItem;
     sequelize?: EggPluginItem;
+    validate?: EggPluginItem;
+    sessionRedis?: EggPluginItem;
+    redis?: EggPluginItem;
   }
 }

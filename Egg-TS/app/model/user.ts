@@ -14,50 +14,43 @@ module.exports = app => {
     return User;
 };
  */
-
 /**
  * @desc 用户表
  */
-import {
-  AutoIncrement,
-  Column,
-  DataType,
-  Model,
-  PrimaryKey,
-  Table,
-} from 'sequelize-typescript';
+import { AutoIncrement, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
 @Table({
-  modelName: 'user',
+    modelName: 'user'
 })
 export class User extends Model<User> {
-  @PrimaryKey
-  @AutoIncrement
-  @Column({
-    // type: DataType.INTEGER,
-    comment: '用户ID',
-  })
-  id: number;
 
-  @Column({
-    type: DataType.STRING,
-    comment: '用户姓名',
-  })
-  name: string;
+    @PrimaryKey
+    @AutoIncrement
+    @Column({
+        //type: DataType.INTEGER,
+        comment: '用户ID',
+    })
+    id: number;
 
-  @Column({
-    type: DataType.INTEGER,
-    comment: '用户年龄',
-  })
-  age: number;
+    @Column({
+        type: DataType.STRING,
+        comment: '用户姓名',
+    })
+    name: string;
 
-  @Column({
-    field: 'created_at',
-  })
-  createdAt: Date;
+    @Column({
+        type: DataType.INTEGER,
+        comment: '用户邮箱'
+    })
+    age: number;
 
-  @Column({
-    field: 'updated_at',
-  })
-  updatedAt: Date;
-}
+    @Column({
+        field: 'created_at'
+    })
+    createdAt: Date;
+
+    @Column({
+        field: 'updated_at'
+    })
+    updatedAt: Date;
+};
 export default () => User;
